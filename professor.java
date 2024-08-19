@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,6 +17,18 @@ public class professor {
         this.name.add(name);
         this.rate.add(rate);
         this.courseName.add(courseName);
+    }
+
+    public static void addProfessor(professor prof1) throws IOException {
+        File prof = new File("prof.txt");
+        Scanner myReader = new Scanner(prof);
+        String data = "";
+        while (myReader.hasNextLine()) {
+            data += myReader.nextLine() + "\n";
+        }
+        data += prof1.name.get(0) + prof1.rate.get(0) + prof1.courseName.get(0);
+        FileWriter fileWriter = new FileWriter("prof.txt");
+        fileWriter.write(data);
     }
 
     public static void loadProfessor() throws FileNotFoundException {
