@@ -18,15 +18,22 @@ public class professor {
         this.rate.add(rate);
         this.courseName.add(courseName);
     }
+    public static void searchProfessor(String profName) {
+
+    }
+
 
     public static void addProfessor(professor prof1) throws IOException {
         File prof = new File("prof.txt");
         Scanner myReader = new Scanner(prof);
+        //Scanner scanner = new Scanner(System.in);
+        //String name = scanner.nextLine();
         String data = "";
         while (myReader.hasNextLine()) {
             data += myReader.nextLine() + "\n";
         }
         data += prof1.name.get(0) + prof1.rate.get(0) + prof1.courseName.get(0);
+        //data += name;
         FileWriter fileWriter = new FileWriter("prof.txt");
         fileWriter.write(data);
     }
