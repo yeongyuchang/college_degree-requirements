@@ -18,21 +18,35 @@ public class professor {
         this.rate.add(rate);
         this.courseName.add(courseName);
     }
-    public static void searchProfessor(String profName) throws FileNotFoundException {
+    public static void searchProfessor(String Name) throws FileNotFoundException {
         File a = new File("prof.txt");
         Scanner scanner = new Scanner(a);
         String data = "";
+        String tempName = "";
+        String tempRate = "";
+        String tempCourseName = "";
+        int counter = 0;
+        int count = 0;
         while (scanner.hasNextLine()) {
-            data = data + scanner.nextLine() + "\n";
+            data = scanner.nextLine();
+            counter++;
+            if (counter == 1) {
+                tempName = data;
+            } else if (counter == 2) {
+                tempRate = data;
+            } else {
+                tempCourseName = data;
+                counter = 0;
+                if (tempName.equals(Name) || tempCourseName.equals(Name)) {
+                    System.out.println(tempName + " " + tempRate + " " + tempCourseName);
+                    count++;
+                }
+            }
+            if (count == 0) {
+                System.out.println("Not Found");
+            }
         }
-        if (data.contains(profName)) {
-            //should show the professor's information with name, rate, and courseName
-        } else {
-            System.out.println("Not Found.");
-        }
-
     }
-
 
     public static void addProfessor(professor prof1) throws IOException {
         File prof = new File("prof.txt");
