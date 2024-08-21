@@ -1,6 +1,9 @@
 Beck Hasti
-4.9/5.0
+4.9
 CS240
 Matthew Endres
-2.5/5.0
+2.5
 MUSIC102
+Andrew
+5.0
+CS180

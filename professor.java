@@ -2,18 +2,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class professor {
-//   static String name;
+    //   static String name;
 //   static double rate;
 //   static String courseName;
-    static ArrayList<String> name = new ArrayList<String>();
-    static ArrayList<Double> rate = new ArrayList<Double>();
-    static ArrayList<String> courseName = new ArrayList<String>();
+
+
+    public ArrayList<String> name;
+    public ArrayList<Double> rate;
+    public ArrayList<String> courseName;
     public professor(String name, double rate, String courseName) {
+        this.name = new ArrayList<>();
+        this.rate = new ArrayList<>();
+        this.courseName = new ArrayList<>();
         this.name.add(name);
         this.rate.add(rate);
         this.courseName.add(courseName);
@@ -42,11 +47,12 @@ public class professor {
                     count++;
                 }
             }
-            if (count == 0) {
-                System.out.println("Not Found");
-            }
+        }
+        if (count == 0) {
+            System.out.println("Not Found");
         }
     }
+
 
     public static void addProfessor(professor prof1) throws IOException {
         File prof = new File("prof.txt");
@@ -57,13 +63,16 @@ public class professor {
         while (myReader.hasNextLine()) {
             data += myReader.nextLine() + "\n";
         }
-        data += prof1.name.get(0) + prof1.rate.get(0) + prof1.courseName.get(0);
+        myReader.close();
+        data += prof1.name.get(0)+ "\n" + prof1.rate.get(0)+ "\n" + prof1.courseName.get(0) + "\n";
         //data += name;
         FileWriter fileWriter = new FileWriter("prof.txt");
         fileWriter.write(data);
+        fileWriter.close();
     }
 
-    public static void loadProfessor() throws FileNotFoundException {
+
+    public void loadProfessor() throws FileNotFoundException {
         //When bringing the information from a text file, create a professor object with the given information. then return the object
         //professor f = new professor("Jack", 5, "CS150");
         //return f;
